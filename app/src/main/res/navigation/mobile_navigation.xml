@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.gebeya.parkingspot.ui.home.HomeMapFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home_map" />
+
+    <fragment
+        android:id="@+id/nav_history"
+        android:name="com.gebeya.parkingspot.ui.gallery.GalleryFragment"
+        android:label="History"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_Setting"
+        android:name="com.gebeya.parkingspot.ui.slideshow.SlideshowFragment"
+        android:label="Setting"
+        tools:layout="@layout/fragment_slideshow" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.gebeya.parkingspot.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/bookFragment"
+        android:name="com.gebeya.parkingspot.BookFragment"
+        android:label="fragment_book"
+        tools:layout="@layout/fragment_book" >
+        <argument android:name="nearby"
+            app:argType="com.gebeya.parkingspot.Nearest1[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/spotListFragment"
+        android:name="com.gebeya.parkingspot.SpotListFragment"
+        android:label="fragment_spot_list"
+        tools:layout="@layout/fragment_spot_list" >
+        <action
+            android:id="@+id/action_spotListFragment_to_bookFragment"
+            app:destination="@id/bookFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/spotListActivity"
+        android:name="com.gebeya.parkingspot.SpotListActivity"
+        android:label="activity_spot_list"
+        tools:layout="@layout/activity_spot_list" />
+    <activity
+        android:id="@+id/bookActivity"
+        android:name="com.gebeya.parkingspot.BookActivity"
+        android:label="activity_book"
+        tools:layout="@layout/activity_book" />
+
+</navigation>
