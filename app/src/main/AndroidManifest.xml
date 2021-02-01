@@ -24,7 +24,6 @@
         <activity android:name=".BookActivity" />
         <activity android:name=".SpotListActivity" />
         <activity android:name=".PoHomeActivity" />
-        <activity android:name=".PoLoginActivity" />
         <activity android:name=".Nearby" />
         <activity
             android:name=".HomeActivity"
