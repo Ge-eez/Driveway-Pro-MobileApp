@@ -10,10 +10,12 @@ import android.aait.driveway_pro.Retrofit.MyService
 import android.aait.driveway_pro.Retrofit.RetrofitClient
 import kotlinx.android.synthetic.main.activity_slot_list.*
 import kotlinx.android.synthetic.main.activity_ticket_list.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import kotlinx.android.synthetic.main.app_bar_main.toolbar as toolbar1
 
 class TicketListActivity : AppCompatActivity(), TicketAdapter.ClickedItem {
 
@@ -25,6 +27,18 @@ class TicketListActivity : AppCompatActivity(), TicketAdapter.ClickedItem {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ticket_list)
+
+        // set toolbar as support action bar
+        setSupportActionBar(toolbar)
+
+        supportActionBar?.apply {
+            title = "Active Tickets"
+
+            // show back button on toolbar
+            // on back button press, it will navigate to parent activity
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
 
         retrofitInterface = retrofit!!.create(MyService::class.java)
         sessionManager = SessionManager(this)
