@@ -40,5 +40,18 @@
         <string name="working">Started</string>
         <string name="stopped">Stopped</string>
 
-    </resources>
+        <string name="logo_txt">Driveway Pro</string>
+        <string name="login_text">Login</string>
+        <string name="password_text">password</string>
+        <string name="forgot_password_text">Forgot password?</string>
+        <string name="no_account_text">Don\'t have an account? Register.</string>
+        <string name="sign_up_text">Sign Up</string>
+        <string name="name_text">Full Name</string>
+        <string name="phone_text">phone number</string>
+        <string name="plate_text">plate number</string>
+        <string name="confirm_password_text">confirm password</string>
+        <string name="create_account_text">Create Account</string>
+        <string name="have_account_text">Already have an account? Login.</string>
+
+</resources>
 
