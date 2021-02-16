@@ -62,51 +62,10 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        //google signin
-        val gso =
-            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build()
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-
-        google_ic.setOnClickListener {
-            signIn()
-        }
-
-        //facebook signin
 
 
-        callbackManager = CallbackManager.Factory.create()
 
-        LoginManager.getInstance().registerCallback(callbackManager,
-            object : FacebookCallback<LoginResult?> {
-                override fun onSuccess(loginResult: LoginResult?) {
-                    Toast.makeText(
-                        this@MainActivity,
-                        "Facebook login successful",
-                        Toast.LENGTH_LONG
-                    ).show()
-                    val intent = Intent(this@MainActivity, HomeActivity::class.java)
-                    startActivity(intent)
 
-                }
-
-                override fun onCancel() {
-                    Toast.makeText(this@MainActivity, "Facebook login Cancelled", Toast.LENGTH_LONG)
-                        .show()
-                }
-
-                override fun onError(exception: FacebookException) {
-                    // App code
-                }
-            })
-
-        facebook_ic.setOnClickListener {
-            LoginManager.getInstance().logInWithReadPermissions(
-                this@MainActivity, Arrays.asList("public_profile", "user_friends")
-            )
-        }
         retrofitInterface = retrofit!!.create(MyService::class.java)
 
 
