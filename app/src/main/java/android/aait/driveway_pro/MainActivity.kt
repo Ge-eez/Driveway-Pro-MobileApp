@@ -14,6 +14,9 @@ import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import android.aait.driveway_pro.Retrofit.MyService
 import android.aait.driveway_pro.Retrofit.RetrofitClient
+import android.aait.driveway_pro.databinding.ActivityMainBinding
+import android.view.View
+import android.widget.TextView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -42,9 +45,13 @@ class MainActivity : AppCompatActivity() {
 
     private var sessionManager: SessionManager?=null
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(android.aait.driveway_pro.R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         sessionManager=SessionManager(this)
 
@@ -63,31 +70,28 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-
-
         retrofitInterface = retrofit!!.create(MyService::class.java)
 
 
 
-        login_btn.setOnClickListener {
-            if (email.text.toString().trim().isEmpty()) {
-                email.error = "Email Required"
-                email.requestFocus()
+        binding.loginBtn.setOnClickListener{
+            if (binding.usernameField.text.toString().trim().isEmpty()) {
+                binding.usernameField.error = "Email Required"
+                binding.usernameField.requestFocus()
                 return@setOnClickListener
             }
-            if (password.text.toString().trim().isEmpty()) {
-                password.error = "Password Required"
-                password.requestFocus()
+            if (binding.passwordField.text.toString().trim().isEmpty()) {
+                binding.passwordField.error = "Password Required"
+                binding.passwordField.requestFocus()
                 return@setOnClickListener
             }
             else{
-                progressB.isVisible=true
+                binding.progressBar.isVisible=true
             }
             val map = HashMap<String, String>()
 
-            map["email"] = email.text.toString()
-            map["password"] = password.text.toString()
+            map["email"] = binding.usernameField.text.toString()
+            map["password"] = binding.passwordField.text.toString()
 
             val call = retrofitInterface!!.executeLogin(map)
             sessionManager= SessionManager(this)
@@ -112,7 +116,7 @@ class MainActivity : AppCompatActivity() {
 
                         if(sessionManager?.fetchPassword()!=null && sessionManager?.fetchPassword()!=null && sessionManager?.fetchRole()=="user"){
                             val intent = Intent(this@MainActivity, HomeActivity::class.java)
-                            intent.putExtra("email",email.text)
+                            intent.putExtra("email",binding.usernameField.text)
                             intent.putExtra("name",response.body()!!.name)
                             startActivity(intent)
                             finish()
@@ -141,21 +145,21 @@ class MainActivity : AppCompatActivity() {
 
                         Toast.makeText(this@MainActivity, "User doesnt exist ", Toast.LENGTH_LONG)
                             .show()
-                        progressB.isVisible=false
+                        binding.progressBar.isVisible=false
                     }
                 }
 
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                     Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_LONG).show()
-                    progressB.isVisible=false
+                    binding.progressBar.isVisible=false
                 }
             })
         }
-        registration_link.setOnClickListener {
+        binding.haveAccount.setOnClickListener {
             val intent = Intent(this, CreateAccountActivity::class.java)
             startActivity(intent)
         }
-        forgotpw.setOnClickListener {
+        binding.forgotPass.setOnClickListener {
             val intent = Intent(this, ForgotPasswordActivity::class.java)
             startActivity(intent)
         }
@@ -210,4 +214,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+
 }

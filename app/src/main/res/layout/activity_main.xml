@@ -112,37 +112,53 @@
 
         <TextView
             style="@style/normal_text"
+            android:id="@+id/forgot_pass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:clickable="true"
-            android:onClick="forgotPassword"
             android:text="@string/forgot_password_text" />
 
 
-        <Button
-            style="@style/button"
-            android:layout_width="200dp"
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="35dp"
-            android:background="@drawable/button_curve"
-            android:onClick="signIn"
-            android:text="@string/login_text"
-            android:textColor="@color/white" />
+            android:layout_gravity="center">
+
+            <Button
+                style="@style/button"
+                android:id="@+id/loginBtn"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/button_curve"
+                android:text="@string/login_text"
+                android:textColor="@color/white" />
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignTop="@+id/loginBtn"
+                android:layout_alignBottom="@+id/loginBtn"
+                android:elevation="2dp"
+                android:indeterminateTint="@android:color/holo_blue_dark"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
 
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/have_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:gravity="center"
         android:clickable="true"
-        android:onClick="toRegister"
         android:text="@string/no_account_text"
         style="@style/normal_text"
         app:layout_constraintEnd_toEndOf="parent"
