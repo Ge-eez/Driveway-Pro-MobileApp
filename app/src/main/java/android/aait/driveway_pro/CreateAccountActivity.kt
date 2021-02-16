@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import android.aait.driveway_pro.Retrofit.MyService
 import android.aait.driveway_pro.Retrofit.RetrofitClient
+import android.aait.driveway_pro.databinding.ActivityCreateAccountBinding
 import kotlinx.android.synthetic.main.activity_create_account.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,60 +21,63 @@ class CreateAccountActivity : AppCompatActivity() {
 
     private var retrofit: Retrofit? = RetrofitClient.getInstance()
     private var retrofitInterface: MyService? = null
+    private lateinit var binding: ActivityCreateAccountBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_account)
+        binding = ActivityCreateAccountBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         retrofitInterface = retrofit!!.create(MyService::class.java)
 
-        create_account_btn.setOnClickListener {
+        binding.createAccount.setOnClickListener {
 
-            if (name_reg.text.toString().trim().isEmpty()) {
-                name_reg.error = "Name Required"
-                name_reg.requestFocus()
+            if (binding.name.text.toString().trim().isEmpty()) {
+                binding.name.error = "Name Required"
+                binding.name.requestFocus()
                 return@setOnClickListener
             }
-            if (email_reg.text.toString().trim().isEmpty()) {
-                email_reg.error = "Email Required"
-                email_reg.requestFocus()
+            if (binding.emailCreate.text.toString().trim().isEmpty()) {
+                binding.emailCreate.error = "Email Required"
+                binding.emailCreate.requestFocus()
                 return@setOnClickListener
             }
-            if (phone_reg.text.toString().trim().isEmpty()) {
-                phone_reg.error = "Phone Number Required"
-                phone_reg.requestFocus()
+            if (binding.phoneNo.text.toString().trim().isEmpty()) {
+                binding.phoneNo.error = "Phone Number Required"
+                binding.phoneNo.requestFocus()
                 return@setOnClickListener
             }
-            if (password_reg.text.toString().trim().isEmpty()) {
-                password_reg.error = "Password Required"
-                password_reg.requestFocus()
+            if (binding.password.text.toString().trim().isEmpty()) {
+                binding.password.error = "Password Required"
+                binding.password.requestFocus()
                 return@setOnClickListener
             }
-            if (confirm_password_reg.text.toString().trim().isEmpty()) {
-                confirm_password_reg.error = "Password Required"
-                confirm_password_reg.requestFocus()
+            if (binding.confirmPass.text.toString().trim().isEmpty()) {
+                binding.confirmPass.error = "Password Required"
+                binding.confirmPass.requestFocus()
                 return@setOnClickListener
             }
-            if(plate_number.text.toString().length!=5){
-                plate_number.error="Plate Number must be five digits"
-                plate_number.requestFocus()
+            if(binding.plateNo.text.toString().length!=5){
+                binding.plateNo.error="Plate Number must be five digits"
+                binding.plateNo.requestFocus()
                 return@setOnClickListener
             }
-            if (password_reg.text.toString().trim().length <8 && !(isValidPassword(password_reg.text.toString().trim()))){
-                password_reg.error="Password must be length of 8 digits and a strong one"
-                password_reg.requestFocus()
+            if (binding.password.text.toString().trim().length <8 && !(isValidPassword(binding.password.text.toString().trim()))){
+                binding.password.error="Password must be length of 8 digits and a strong one"
+                binding.password.requestFocus()
                 return@setOnClickListener
             }
             val map = HashMap<String, String>()
 
-            map["name"] = name_reg.text.toString()
-            map["email"] = email_reg.text.toString()
-            map["password"] = password_reg.text.toString()
-            map["phone_no"] = phone_reg.text.toString()
-            map["plate_number"]=plate_number.text.toString()
+            map["name"] = binding.name.text.toString()
+            map["email"] = binding.emailCreate.text.toString()
+            map["password"] = binding.password.text.toString()
+            map["phone_no"] = binding.phoneNo.text.toString()
+            map["plate_number"]=binding.plateNo.text.toString()
 
 
-            if (map["password"] == confirm_password_reg.text.toString()) {
+            if (map["password"] == binding.confirmPass.text.toString()) {
                 val call: Call<Void> = retrofitInterface!!.executeSignup(map)
 
                 call.enqueue(object : Callback<Void> {
@@ -102,7 +106,7 @@ class CreateAccountActivity : AppCompatActivity() {
             }
 
         }
-        have_account_link.setOnClickListener {
+        binding.createAccount.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
