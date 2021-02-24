@@ -7,14 +7,26 @@
     android:padding="15dp"
     tools:context=".PoClearStackActivity">
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="377dp"
+        android:layout_height="324dp"
+
+        android:background="@drawable/stack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+    </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcPoClearstack"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="363dp"
+        android:layout_height="336dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
         tools:listitem="@layout/po_row_stack" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

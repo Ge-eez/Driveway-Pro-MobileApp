@@ -11,19 +11,31 @@
     android:padding="16dp"
     tools:context=".BookActivity">
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="304dp"
+
+        android:background="@drawable/park"
+        mapbox:layout_constraintEnd_toEndOf="parent"
+        mapbox:layout_constraintStart_toStartOf="parent"
+        mapbox:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+    </RelativeLayout>
+
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
-        android:layout_height="215dp"
-        mapbox:mapbox_cameraZoom="10"
+        android:layout_height="122dp"
         mapbox:mapbox_cameraTargetLat="9.005401"
-        mapbox:mapbox_cameraTargetLng="38.763611">
+        mapbox:mapbox_cameraTargetLng="38.763611"
+        mapbox:mapbox_cameraZoom="10">
 
     </com.mapbox.mapboxsdk.maps.MapView>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="395dp"
+        android:layout_height="243dp"
         android:layout_gravity="bottom"
         android:orientation="vertical"
         android:paddingBottom="0dp">

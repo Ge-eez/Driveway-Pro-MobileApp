@@ -7,15 +7,31 @@
     android:layout_height="match_parent"
     tools:context=".PoSlotListActivity">
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="423dp"
+        android:layout_height="160dp"
+
+        android:background="@drawable/top"
+        app:layout_constraintBottom_toTopOf="@+id/rcPoParkSlot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcPoParkSlot"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="405dp"
+        android:layout_height="590dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         tools:listitem="@layout/po_row_stack" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
