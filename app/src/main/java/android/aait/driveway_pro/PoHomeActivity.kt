@@ -1,14 +1,9 @@
 package android.aait.driveway_pro
 
-import android.R
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.aait.driveway_pro.Retrofit.MyService
 import android.aait.driveway_pro.Retrofit.RetrofitClient
 import kotlinx.android.synthetic.main.activity_create_account.*
@@ -36,14 +31,14 @@ class PoHomeActivity : AppCompatActivity() {
         poName.text="Parking Officer: ${sessionManager.fetchName()}"
 
         exitBtn.setOnClickListener {
-            if (plateNo.text.toString().trim().length <5){
-                plateNo.error="Plate Number is a minimum of 5 characters"
-                plateNo.requestFocus()
+            if (plateNoInput.text.toString().trim().length <5){
+                plateNoInput.error="Plate Number is a minimum of 5 characters"
+                plateNoInput.requestFocus()
                 return@setOnClickListener
             }
 
             val map = HashMap<String, String>()
-            map["plate_no"] = plateNo.text.toString()
+            map["plate_no"] = plateNoInput.text.toString()
 
             var call = retrofitInterface!!.poCancel("Bearer ${sessionManager.fetchAuthToken()}",map)
 
@@ -72,26 +67,26 @@ class PoHomeActivity : AppCompatActivity() {
                             .show()
                     }
                     else if(response.code()==404){
-                        Toast.makeText(this@PoHomeActivity, "No Ticket found for plate number ${plateNo.text.toString()}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@PoHomeActivity, "No Ticket found for plate number ${plateNoInput.text.toString()}", Toast.LENGTH_LONG).show()
                     }
                 }
             })
         }
 
         parkBtn.setOnClickListener {
-            if (plateNo.text.toString().trim().isEmpty()) {
-                plateNo.error = "Plate Number Required"
-                plateNo.requestFocus()
+            if (plateNoInput.text.toString().trim().isEmpty()) {
+                plateNoInput.error = "Plate Number Required"
+                plateNoInput.requestFocus()
                 return@setOnClickListener
             }
-            if (plateNo.text.toString().trim().length <5){
-                plateNo.error="Plate Number is a minimum of 5 characters"
-                plateNo.requestFocus()
+            if (plateNoInput.text.toString().trim().length <5){
+                plateNoInput.error="Plate Number is a minimum of 5 characters"
+                plateNoInput.requestFocus()
                 return@setOnClickListener
             }
 
             val intent1=Intent(this, PoSlotListActivity::class.java)
-            var plate_number=plateNo.text.toString()
+            var plate_number=plateNoInput.text.toString()
 
             val intent = Intent(this, PoStackListActivity::class.java)
             intent.putExtra("plate_number",plate_number)

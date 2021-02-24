@@ -45,11 +45,7 @@ class TicketListActivity : AppCompatActivity(), TicketAdapter.ClickedItem {
 
         var recyclerView: RecyclerView = rcTicket
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                this,
-                DividerItemDecoration.VERTICAL)
-        )
+
 
         var call = retrofitInterface!!.getTicket("Bearer ${sessionManager.fetchAuthToken()}")
 

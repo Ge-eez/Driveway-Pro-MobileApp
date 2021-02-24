@@ -25,7 +25,7 @@
         <item
             android:id="@+id/spotListActivity"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Parking Spots" />
+            android:title="@string/ParkingSpots" />
 
     </group>
 </menu>
