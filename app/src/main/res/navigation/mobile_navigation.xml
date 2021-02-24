@@ -13,15 +13,15 @@
 
     <fragment
         android:id="@+id/nav_history"
-        android:name="android.aait.driveway_pro.ui.gallery.GalleryFragment"
+        android:name="android.aait.driveway_pro.ui.history.HistoryFragment"
         android:label="History"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_history" />
 
     <fragment
         android:id="@+id/nav_Setting"
-        android:name="android.aait.driveway_pro.ui.slideshow.SlideshowFragment"
+        android:name="android.aait.driveway_pro.ui.settings.SettingsFragment"
         android:label="Setting"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_settings" />
     <activity
         android:id="@+id/mainActivity"
         android:name="android.aait.driveway_pro.MainActivity"

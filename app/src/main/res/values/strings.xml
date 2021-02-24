@@ -60,6 +60,7 @@
         <string name="Continue">Continue</string>
         <string name="SelectSlot">Select Slot</string>
         <string name="SelectFloor">Select Floor/Stack</string>
+    <string name="ParkingSpots">Parking Spots</string>
 
 </resources>
 
