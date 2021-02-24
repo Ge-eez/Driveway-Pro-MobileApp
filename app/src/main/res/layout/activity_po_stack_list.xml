@@ -12,7 +12,9 @@
         android:layout_width="423dp"
         android:layout_height="160dp"
 
+        android:layout_marginBottom="4dp"
         android:background="@drawable/top"
+        app:layout_constraintBottom_toTopOf="@+id/rcPoParkstack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
@@ -21,14 +23,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcPoParkstack"
-        android:layout_width="401dp"
-        android:layout_height="538dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="331dp"
+        android:layout_height="526dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.967"
         tools:listitem="@layout/po_row_stack" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
