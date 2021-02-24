@@ -48,10 +48,18 @@
         <string name="sign_up_text">Sign Up</string>
         <string name="name_text">Full Name</string>
         <string name="phone_text">phone number</string>
-        <string name="plate_text">plate number</string>
+        <string name="plate_text">Plate Number</string>
         <string name="confirm_password_text">confirm password</string>
         <string name="create_account_text">Create Account</string>
         <string name="have_account_text">Already have an account? Login.</string>
+    <string name="Park">Park</string>
+        <string name="Exit">Exit</string>
+        <string name="Tickets">Tickets</string>
+        <string name="Clear">Clear Stack</string>
+        <string name="ParkingOfficer">Parking Officer</string>
+        <string name="Continue">Continue</string>
+        <string name="SelectSlot">Select Slot</string>
+        <string name="SelectFloor">Select Floor/Stack</string>
 
 </resources>
 

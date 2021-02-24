@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Parking officer: "
+        android:text="@string/ParkingOfficer"
         android:textColor="#000000"
         android:textSize="18sp" />
 
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:ems="10"
-        android:hint="Plate Number"
+        android:hint="@string/plate_text"
         android:inputType="textPersonName" />
 
     <LinearLayout
@@ -33,6 +33,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            style="?android:attr/buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="bottom"
@@ -40,30 +41,33 @@
 
             <Button
                 android:id="@+id/parkBtn"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:background="#8024AA"
-                android:text="Park"
+                android:background="@color/colorPrimary"
+                android:text="@string/Park"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF" />
 
             <Button
                 android:id="@+id/exitBtn"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:background="#8024AA"
-                android:text="Exit"
+                android:background="@color/colorPrimary"
+                android:text="@string/Exit"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
 
         <LinearLayout
+            style="?android:attr/buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -71,25 +75,27 @@
 
             <Button
                 android:id="@+id/ticketBtn"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:background="#8024AA"
-                android:text="Tickets"
+                android:background="@color/colorPrimary"
+                android:text="@string/Tickets"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF" />
 
             <Button
                 android:id="@+id/clearBtn"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:background="#8024AA"
-                android:text="Clear Stack"
+                android:background="@color/colorPrimary"
+                android:text="@string/Clear"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
