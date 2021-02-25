@@ -6,55 +6,47 @@
     android:layout_height="match_parent"
     android:padding="1dp"
     tools:context=".TicketListActivity"
-    >
+    ><![CDATA[
+
+    /RelativeLayout>
+
+
+
+
+
+
+    1dp">
+
+
+
+
+
+
+
+
+
+    ]]>
 
     <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="416dp"
+        android:layout_height="334dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/tick"
 
-        android:background="@drawable/ticket_pic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
-    </RelativeLayout>
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:elevation="4dp"
-        android:minHeight="?attr/actionBarSize"
-
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/rcTicket"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcTicket"
-        android:layout_width="match_parent"
-        android:layout_height="219dp"
+        android:layout_width="409dp"
+        android:layout_height="282dp"
+        android:layout_marginBottom="88dp"
         android:paddingTop="0dp"
         android:paddingBottom="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        app:layout_constraintVertical_bias="0.0"
-        tools:listitem="@layout/row_layout" />
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/bottom_pic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/row_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
