@@ -29,7 +29,7 @@ class TicketListActivity : AppCompatActivity(), TicketAdapter.ClickedItem {
         setContentView(R.layout.activity_ticket_list)
 
         // set toolbar as support action bar
-        setSupportActionBar(toolbar)
+
 
         supportActionBar?.apply {
             title = "Active Tickets"
