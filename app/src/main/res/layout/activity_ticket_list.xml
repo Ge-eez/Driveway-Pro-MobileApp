@@ -38,8 +38,7 @@
         android:layout_width="416dp"
         android:layout_height="334dp"
         android:layout_marginBottom="8dp"
-
-        android:background="@drawable/tick"
+        android:background="@drawable/ticket_pic"
         app:layout_constraintBottom_toTopOf="@+id/rcTicket"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
