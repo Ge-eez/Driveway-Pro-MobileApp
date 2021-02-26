@@ -25,27 +25,38 @@
 
 
 
+
+
+
+
+
+
     ]]>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout2"
         android:layout_width="416dp"
         android:layout_height="334dp"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/tick"
+        android:layout_marginBottom="8dp"
 
+        android:background="@drawable/tick"
         app:layout_constraintBottom_toTopOf="@+id/rcTicket"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcTicket"
         android:layout_width="409dp"
         android:layout_height="282dp"
+        android:layout_marginTop="25dp"
         android:layout_marginBottom="88dp"
         android:paddingTop="0dp"
         android:paddingBottom="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2"
         tools:listitem="@layout/row_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
