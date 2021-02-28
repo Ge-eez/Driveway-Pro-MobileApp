@@ -106,7 +106,7 @@ class CreateAccountActivity : AppCompatActivity() {
             }
 
         }
-        binding.createAccount.setOnClickListener {
+        binding.haveAccount.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }

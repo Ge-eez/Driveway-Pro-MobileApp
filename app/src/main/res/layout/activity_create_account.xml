@@ -117,12 +117,13 @@
             android:hint="@string/plate_text"
             android:textColorHint="@color/black">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/plateNo"
-            style="@style/normal_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/plateNo"
+                style="@style/normal_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -191,16 +192,16 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/have_account"
+        style="@style/normal_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="36dp"
+        android:clickable="true"
         android:text="@string/have_account_text"
-        style="@style/normal_text"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:clickable="true"
-        android:onClick="toSignIn"/>
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 
 
