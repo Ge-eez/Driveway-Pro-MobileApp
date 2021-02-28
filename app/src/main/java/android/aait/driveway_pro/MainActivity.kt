@@ -3,26 +3,15 @@ package android.aait.driveway_pro
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
-import com.facebook.login.LoginManager
-import com.facebook.login.LoginResult
+
 import android.aait.driveway_pro.Retrofit.MyService
 import android.aait.driveway_pro.Retrofit.RetrofitClient
 import android.aait.driveway_pro.databinding.ActivityMainBinding
-import android.view.View
-import android.widget.TextView
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
+
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,11 +23,7 @@ import kotlin.collections.HashMap
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var mGoogleSignInClient: GoogleSignInClient
-    private val RC_SIGN_IN = 9001
 
-    lateinit var callbackManager: CallbackManager
-    private val EMAIL = "email"
 
     private var retrofit: Retrofit? = RetrofitClient.getInstance()
     private var retrofitInterface: MyService? = null
@@ -109,10 +94,6 @@ class MainActivity : AppCompatActivity() {
                         sessionManager!!.savePassword((response.body()!!.password))
                         sessionManager!!.saveName(response.body()!!.name)
 
-                        //Toast.makeText(this@MainActivity,"User Logged in successful ${response.body()!!.token}", Toast.LENGTH_LONG).show()
-
-                        //toasted the token to check if its working.
-
 
                         if(sessionManager?.fetchPassword()!=null && sessionManager?.fetchPassword()!=null && sessionManager?.fetchRole()=="user"){
                             val intent = Intent(this@MainActivity, HomeActivity::class.java)
@@ -124,20 +105,10 @@ class MainActivity : AppCompatActivity() {
                         else if( sessionManager?.fetchRole()=="parking_officer"){
                             val intent = Intent(this@MainActivity, PoHomeActivity::class.java)
                             startActivity(intent)
-                            //finish()
-                        }
-
-                        if(response.body()!!.roles[0]=="user"){
-                            val intent = Intent(this@MainActivity, HomeActivity::class.java)
-                            startActivity(intent)
                             finish()
                         }
 
-                        else if(response.body()!!.roles[0]=="parking_officer"){
-                            val intent = Intent(this@MainActivity, PoHomeActivity::class.java)
-                            startActivity(intent)
-                            //finish()
-                        }
+
 
 
 
@@ -170,45 +141,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun signIn() {
-        val signInIntent = mGoogleSignInClient.signInIntent
-        startActivityForResult(
-                signInIntent, RC_SIGN_IN
-        )
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
-        callbackManager.onActivityResult(requestCode, resultCode, data)
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN) {
-            val task =
-                    GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleSignInResult(task)
-        }
-
-    }
-
-    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
-        try {
-            val account = completedTask.getResult(ApiException::class.java)
-            // Signed in successfully, show authenticated UI.
-            val intent = Intent(this@MainActivity, HomeActivity::class.java)
-            startActivity(intent)
-
-        } catch (e: ApiException) {
-            Log.e("failed code=", e.statusCode.toString())
-        }
-
-    }
 
     override fun onStart() {
         super.onStart()
-        val account = GoogleSignIn.getLastSignedInAccount(this)
+
         sessionManager= SessionManager(this)
         if(sessionManager?.fetchPassword()!=null && sessionManager?.fetchPassword()!=null && sessionManager?.fetchRole()=="user"){
             val intent = Intent(this@MainActivity, HomeActivity::class.java)
-            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).flags=Intent.FLAG_ACTIVITY_CLEAR_TOP
+
             startActivity(intent)
             finish()
         }
