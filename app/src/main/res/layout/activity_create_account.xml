@@ -82,7 +82,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:hint="@string/name_text"
-            android:textColorHint="@color/black">
+            android:textColorHint="@color/colorPrimaryDark">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/name"
@@ -99,7 +99,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:hint="@string/phone_text"
-            android:textColorHint="@color/black">
+            android:textColorHint="@color/colorPrimaryDark">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/phone_no"
@@ -115,7 +115,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:hint="@string/plate_text"
-            android:textColorHint="@color/black">
+            android:textColorHint="@color/colorPrimaryDark">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/plateNo"
@@ -130,7 +130,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:hint="@string/email_create_acct"
-            android:textColorHint="@color/black">
+            android:textColorHint="@color/colorPrimaryDark">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email_create"
@@ -147,7 +147,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:hint="@string/password_text"
-            android:textColorHint="@color/black"
+            android:textColorHint="@color/colorPrimaryDark"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -165,7 +165,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:hint="@string/confirm_password_create_acct"
-            android:textColorHint="@color/black"
+            android:textColorHint="@color/colorPrimaryDark"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -191,7 +191,18 @@
 
     </LinearLayout>
 
-
+    <TextView
+        android:id="@+id/have_an_account"
+        style="@style/link_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="@string/already_have_an_account_link"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
