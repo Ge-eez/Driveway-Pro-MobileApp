@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
     private var retrofit: Retrofit? = null
-    private  var sessionManage: SessionManager?=null
+//    private  var sessionManage: SessionManager?=null
 
     //val BASE_URL = "http://192.168.1.5:3000"
     val BASE_URL = "https://parking-spot-finder-api.herokuapp.com"

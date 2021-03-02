@@ -40,7 +40,7 @@ class Nearby : AppCompatActivity() {
             val map = HashMap<String, Double>()
 
             map["longitude"] = 37.8
-            map["latitude"]=8.9
+            map["latitude"] = 8.9
             val call = retrofitInterface.findspot("Bearer $token",map)
 
 

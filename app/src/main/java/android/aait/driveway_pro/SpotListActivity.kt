@@ -37,14 +37,14 @@ class SpotListActivity : AppCompatActivity(), NearestAdapter.ClickedItem {
         sessionManager = SessionManager(this)
         var recyclerView: RecyclerView = rcSpots
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                this,
-                DividerItemDecoration.VERTICAL)
-        )
+//        recyclerView.addItemDecoration(
+//            DividerItemDecoration(
+//                this,
+//                DividerItemDecoration.VERTICAL)
+//        )
 
         var call = retrofitInterface!!.findspot1("Bearer ${sessionManager.fetchAuthToken()}", params)
-
+//Auth, Json
         call.enqueue(object : Callback<ArrayList<Nearest1>> {
             override fun onFailure(call: Call<ArrayList<Nearest1>>, t: Throwable) {
                 Toast.makeText(this@SpotListActivity, t.message, Toast.LENGTH_LONG).show()
@@ -76,12 +76,15 @@ class SpotListActivity : AppCompatActivity(), NearestAdapter.ClickedItem {
     override fun clickedSpot(nearest: Nearest1) {
         var callback:Callback<ArrayList<Slot>>
         var intent= Intent(this, slotListActivity::class.java)
-        var parkingId=nearest._id
-        var price=nearest.price
+        var parkingId = nearest._id
+        var price = nearest.price
+        var company = nearest.company
 
-        intent.putExtra("id",parkingId)//trying to send the id first then do the ntk call on the other activity
-        intent.putExtra("price",price.toString())
+        intent.putExtra("id", parkingId)//trying to send the id first then do the ntk call on the other activity
+        intent.putExtra("price", price.toString())
+        intent.putExtra("company", company.toString())
 
         startActivity(intent)
     }
+
 }

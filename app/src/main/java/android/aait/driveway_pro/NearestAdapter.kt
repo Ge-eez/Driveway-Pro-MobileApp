@@ -25,7 +25,7 @@ class NearestAdapter(val nearest: ArrayList<Nearest1>, var clickedItem: ClickedI
         // var compnay:String=near.company
         // holder.bindData(nearest,position)
         holder.company.text=near.company.name
-        holder.info.text=near.price.toString()+" birr per minute"
+        holder.info.text=near.price.toString()+" birr per hour"
         /*holder.itemView.setOnClickListener { view : View ->
             view.findNavController().navigate(R.id.action_spotListFragment_to_bookFragment)
 
@@ -46,7 +46,7 @@ class NearestAdapter(val nearest: ArrayList<Nearest1>, var clickedItem: ClickedI
         var company: TextView =itemView.findViewById(R.id.CompanytxtView)
         // private var company:TextView=itemView.CompanytxtView
         var info: TextView =itemView.findViewById(R.id.detailstxtView)
-         var det: TextView =itemView.findViewById(R.id.detalslabel)
+        var det: TextView =itemView.findViewById(R.id.detalslabel)
         //var book: TextView =itemView.findViewById(R.id.bookBtn)
 
         /*fun bindData(spotlist:ArrayList<Nearest>,position: Int){

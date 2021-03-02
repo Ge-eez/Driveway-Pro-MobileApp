@@ -25,6 +25,7 @@ import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
 import com.mapbox.mapboxsdk.utils.BitmapUtils
 import kotlinx.android.synthetic.main.activity_book.*
 import kotlinx.android.synthetic.main.activity_book.mapView
+import kotlinx.android.synthetic.main.activity_detail_info.*
 import kotlinx.android.synthetic.main.fragment_home_map.*
 import org.json.JSONArray
 import retrofit2.Call
@@ -65,7 +66,8 @@ class BookActivity : AppCompatActivity(), OnMapReadyCallback {
         var parkingSlotId=intent.getStringExtra("slotId")
         var price=intent.getStringExtra("price")
 
-        priceValue.text=price+" birr per minute"
+        nameOfCompany.text=intent.getStringExtra("company")
+        priceValue.text = price+" birr per hour"
 
         bookBtn.setOnClickListener {
             val map = HashMap<String, String>()
@@ -102,21 +104,7 @@ class BookActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         cancelbtn.setOnClickListener {
-            val map = HashMap<String, String>()
-            map.put("ticketId", sessionManager.fetchTicket()!!)
-
-            var call = retrofitInterface!!.exit("Bearer ${sessionManager.fetchAuthToken()}", map)
-            call.enqueue(object :Callback<Exit>{
-                override fun onFailure(call: Call<Exit>, t: Throwable) {
-                    Toast.makeText(this@BookActivity, t.message, Toast.LENGTH_LONG).show()
-                }
-                override fun onResponse(call: Call<Exit>, response: Response<Exit>
-                ) {
-                    var respo=response.body()!!
-                    Toast.makeText(this@BookActivity, "Reservation Cancelled", Toast.LENGTH_LONG).show()
-                    startActivity(Intent(this@BookActivity,slotListActivity::class.java))
-                }
-            })
+            finish()
         }
 
     }

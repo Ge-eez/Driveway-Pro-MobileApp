@@ -9,10 +9,9 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
-        android:layout_width="399dp"
-        android:layout_height="149dp"
+        android:layout_width="match_parent"
+        android:layout_height="275dp"
 
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/top"
         app:layout_constraintBottom_toTopOf="@+id/rcSpots"
