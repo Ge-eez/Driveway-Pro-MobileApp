@@ -1,16 +1,27 @@
 package android.aait.driveway_pro
 
+import android.aait.driveway_pro.Retrofit.MyService
+import android.aait.driveway_pro.Retrofit.RetrofitClient
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_po_home.*
 import kotlinx.android.synthetic.main.activity_timer.*
 import kotlinx.android.synthetic.main.activity_timer.nameOfCompany
 import kotlinx.android.synthetic.main.activity_timer.priceValue
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.*
 
 class TimerActivity : AppCompatActivity() {
+    private var retrofit: Retrofit? = RetrofitClient.getInstance()
+    private var retrofitInterface: MyService? = null
+    private lateinit var sessionManager: SessionManager
 //    private var retrofit: Retrofit? = RetrofitClient.getInstance()
 //    private var retrofitInterface: MyService? = null
 //    private lateinit var sessionManager: SessionManager
@@ -28,6 +39,8 @@ class TimerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 //        Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
         setContentView(R.layout.activity_timer)
+        retrofitInterface = retrofit!!.create(MyService::class.java)
+        sessionManager = SessionManager(this)
 //        mapView?.onCreate(savedInstanceState)
 //        mapView.getMapAsync(this)
 
@@ -53,6 +66,40 @@ class TimerActivity : AppCompatActivity() {
 //            var isWorking = false
 
             override fun onClick(v: View) {
+//                val map = HashMap<String, String>()
+//                map["slot_id"] = parkingSlotId.toString()
+//
+//                var call = retrofitInterface!!.poCancel("Bearer ${sessionManager.fetchAuthToken()}",map)
+//
+//                call.enqueue(object : Callback<PoResponse> {
+//                    override fun onFailure(call: Call<PoResponse>, t: Throwable) {
+//                        Toast.makeText(this@TimerActivity, t.message, Toast.LENGTH_LONG).show()
+//
+//                    }
+//
+//                    override fun onResponse(call: Call<PoResponse>, response: Response<PoResponse>) {
+//                        if (response.code() == 200 ) {
+//                            var resp = response.body()!!
+//                            Toast.makeText(this@TimerActivity,"cleared", Toast.LENGTH_LONG).show()
+//                            var intent= Intent(this@TimerActivity, DetailActivity::class.java)
+//                            intent.putExtra("slotId",resp.slot_id)
+//                            intent.putExtra("plateNumber",resp.plate_number)
+//                            intent.putExtra("parkAt",resp.park_at)
+//                            intent.putExtra("exitAt",resp.exit_at)
+//                            intent.putExtra("total",resp.total_price)
+//                            startActivity(intent)
+//
+//
+//                        } else if (response.code() == 400) {
+//
+//                            Toast.makeText(this@TimerActivity, "Wrong Value", Toast.LENGTH_LONG)
+//                                .show()
+//                        }
+//                        else if(response.code()==404){
+//                            Toast.makeText(this@TimerActivity, "No Ticket found for plate number ${plateNoInput.text.toString()}", Toast.LENGTH_LONG).show()
+//                        }
+//                    }
+//                })
 
 //                if (!isWorking) {
 //                    chronometer.start()
@@ -87,12 +134,21 @@ class TimerActivity : AppCompatActivity() {
 //                        sessionManager.saveTicket(response.body()!!._id)
 //                        Toast.makeText(this@TimerActivity," slot $parkingSlotId reservation successful", Toast.LENGTH_LONG).show()
 //                        startActivity(Intent(this@BookActivity,TimerActivity::class.java))
-                var intented= Intent(this@TimerActivity, ExitUser::class.java)
+
+
+
+                var intented= Intent(this@TimerActivity, DetailActivity::class.java)
 
                 intented.putExtra("parkingLotId",parkingId)
                 intented.putExtra("parkingSlotId",parkingSlotId)
+                intented.putExtra("startTimeValue",startTimeValue.toString())
+                intented.putExtra("company",nameOfCompany.toString())
                 intented.putExtra("price",price)
                 startActivity(intented)
+
+
+
+
 //                    }
 //                    else if (response.code() == 400) {
 //                        Toast.makeText(this@TimerActivity ,"Client Error ", Toast.LENGTH_LONG).show()
