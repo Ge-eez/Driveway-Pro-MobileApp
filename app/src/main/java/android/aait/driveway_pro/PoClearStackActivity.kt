@@ -1,19 +1,21 @@
 package android.aait.driveway_pro
 
-import androidx.appcompat.app.AppCompatActivity
+import android.aait.driveway_pro.Retrofit.MyService
+import android.aait.driveway_pro.Retrofit.RetrofitClient
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.aait.driveway_pro.Retrofit.MyService
-import android.aait.driveway_pro.Retrofit.RetrofitClient
 import kotlinx.android.synthetic.main.activity_po_clear_stack.*
 import kotlinx.android.synthetic.main.activity_po_stack_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+
 
 class PoClearStackActivity : AppCompatActivity(),PoStackAdapter.ClickedItem{
     private var retrofit: Retrofit? = RetrofitClient.getInstance()
@@ -29,9 +31,9 @@ class PoClearStackActivity : AppCompatActivity(),PoStackAdapter.ClickedItem{
         var recyclerView: RecyclerView = rcPoClearstack
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                this,
-                DividerItemDecoration.VERTICAL)
+                DividerItemDecoration(
+                        this,
+                        DividerItemDecoration.VERTICAL)
         )
 
         var call = retrofitInterface!!.getstack("Bearer ${sessionManager.fetchAuthToken()}")
@@ -41,11 +43,10 @@ class PoClearStackActivity : AppCompatActivity(),PoStackAdapter.ClickedItem{
             }
 
             override fun onResponse(call: Call<ArrayList<Stack>>, response: Response<ArrayList<Stack>>) {
-                if(response.code()==200){
+                if (response.code() == 200) {
                     var resp = response.body()!!
-                    recyclerView.adapter = PoStackAdapter(resp,this@PoClearStackActivity)
-                }
-                else if(response.code()==400){
+                    recyclerView.adapter = PoStackAdapter(resp, this@PoClearStackActivity)
+                } else if (response.code() == 400) {
                     Toast.makeText(this@PoClearStackActivity, "client error", Toast.LENGTH_LONG).show()
                 }
             }
@@ -57,23 +58,23 @@ class PoClearStackActivity : AppCompatActivity(),PoStackAdapter.ClickedItem{
     override fun clickedSpot(stackk: Stack) {
         var parkingLotId=stackk._id
 
-        val map=HashMap<String,String>()
-        map.put("parkingLotId",parkingLotId)
+        val map=HashMap<String, String>()
+        map.put("parkingLotId", parkingLotId)
 
-        var call = retrofitInterface!!.clearStack("Bearer ${sessionManager.fetchAuthToken()}",map)
+        var call = retrofitInterface!!.clearStack("Bearer ${sessionManager.fetchAuthToken()}", map)
         call.enqueue(object : Callback<Stack> {
             override fun onFailure(call: Call<Stack>, t: Throwable) {
                 Toast.makeText(this@PoClearStackActivity, t.message, Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(call: Call<Stack>, response: Response<Stack>) {
-                if(response.code()==200){
-                   Toast.makeText(this@PoClearStackActivity,"${response.body()!!.slots} slots are cleared", Toast.LENGTH_LONG).show()
-
-                }
-                else if(response.code()==400){
+                if (response.code() == 200) {
+                    Toast.makeText(this@PoClearStackActivity, "${response.body()!!.slots} slots are cleared", Toast.LENGTH_LONG).show()
+                } else if (response.code() == 400) {
                     Toast.makeText(this@PoClearStackActivity, "client error", Toast.LENGTH_LONG).show()
                 }
+                var intent= Intent(this@PoClearStackActivity, PoHomeActivity::class.java)
+                startActivity(intent)
             }
         }
 

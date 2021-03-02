@@ -74,8 +74,6 @@ class PoSlotListActivity : AppCompatActivity(), PoSlotAdapter.ClickedItem {
 
     override fun clickedSpot(slot: Slot) {
         var slotID = slot._id
-        val intent = intent
-
 
         val map = HashMap<String, String>()
         map.put("parkingLotId", parkingLotId)
@@ -103,6 +101,9 @@ class PoSlotListActivity : AppCompatActivity(), PoSlotAdapter.ClickedItem {
                     Toast.makeText(this@PoSlotListActivity, "Client Error ", Toast.LENGTH_LONG)
                         .show()
                 }
+
+                var intent= Intent(this@PoSlotListActivity, PoHomeActivity::class.java)
+                startActivity(intent)
             }
         })
 
