@@ -65,8 +65,9 @@ class BookActivity : AppCompatActivity(), OnMapReadyCallback {
         var parkingId=intent.getStringExtra("parkingLotId")
         var parkingSlotId=intent.getStringExtra("slotId")
         var price=intent.getStringExtra("price")
+        var company = intent.getStringExtra("company")
 
-        nameOfCompany.text=intent.getStringExtra("company")
+        nameOfCompany.text = company
         priceValue.text = price+" birr per hour"
 
         bookBtn.setOnClickListener {
@@ -93,7 +94,14 @@ class BookActivity : AppCompatActivity(), OnMapReadyCallback {
                         var resp1=response.body()!!._id
                         sessionManager.saveTicket(response.body()!!._id)
                         Toast.makeText(this@BookActivity," slot $parkingSlotId reservation successful", Toast.LENGTH_LONG).show()
-                        startActivity(Intent(this@BookActivity,TimerActivity::class.java))
+//                        startActivity(Intent(this@BookActivity,TimerActivity::class.java))
+                        var intent= Intent(this@BookActivity, TimerActivity::class.java)
+
+                        intent.putExtra("parkingLotId",parkingId)
+                        intent.putExtra("parkingSlotId",parkingSlotId)
+                        intent.putExtra("company",company)
+                        intent.putExtra("price",price)
+                        startActivity(intent)
                     }
                     else if (response.code() == 400) {
                         Toast.makeText(this@BookActivity ,"Client Error ", Toast.LENGTH_LONG).show()

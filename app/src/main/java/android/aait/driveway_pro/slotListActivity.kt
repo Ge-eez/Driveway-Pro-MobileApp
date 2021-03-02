@@ -26,6 +26,7 @@ class slotListActivity : AppCompatActivity(), slotListAdapter.ClickedItem {
     var listOfslot = mutableListOf<String>()
     lateinit var parkingId:String
     lateinit var price:String
+    lateinit var companyName:String
     lateinit var company:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +47,9 @@ class slotListActivity : AppCompatActivity(), slotListAdapter.ClickedItem {
         val intent = intent
         parkingId= intent.getStringExtra("id").toString()
         price= intent.getStringExtra("price").toString()
-        company = intent.getStringExtra("company").toString().substring(13, 18)
+        companyName = intent.getStringExtra("company").toString()
+
+        company = companyName.substring(13, companyName.length - 1)
 
         //sending the received id to Bookactivity as ParkingLotId
        // var intent1= Intent(this, BookActivity::class.java)
