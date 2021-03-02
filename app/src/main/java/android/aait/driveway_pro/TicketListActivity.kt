@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.aait.driveway_pro.Retrofit.MyService
 import android.aait.driveway_pro.Retrofit.RetrofitClient
+import android.content.Intent
+import kotlinx.android.synthetic.main.activity_po_home.*
 import kotlinx.android.synthetic.main.activity_slot_list.*
 import kotlinx.android.synthetic.main.activity_ticket_list.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -64,6 +66,38 @@ class TicketListActivity : AppCompatActivity(), TicketAdapter.ClickedItem {
     }
 
     override fun clickedSpot(ticket: Ticket) {
-        TODO("Not yet implemented")
+        var plate_number = ticket.plate_number
+        val map = HashMap<String, String>()
+        map["plate_no"] = plate_number
+        var call = retrofitInterface!!.poCancel("Bearer ${sessionManager.fetchAuthToken()}",map)
+        call.enqueue(object : Callback<PoResponse> {
+            override fun onFailure(call: Call<PoResponse>, t: Throwable) {
+                Toast.makeText(this@TicketListActivity, t.message, Toast.LENGTH_LONG).show()
+
+            }
+
+            override fun onResponse(call: Call<PoResponse>, response: Response<PoResponse>) {
+                if (response.code() == 200 ) {
+                    var resp = response.body()!!
+                    Toast.makeText(this@TicketListActivity,"cleared",Toast.LENGTH_LONG).show()
+                    var intent= Intent(this@TicketListActivity, DetailInfoActivity::class.java)
+                    intent.putExtra("slotId",resp.slot_id)
+                    intent.putExtra("plateNumber",resp.plate_number)
+                    intent.putExtra("parkAt",resp.park_at)
+                    intent.putExtra("exitAt",resp.exit_at)
+                    intent.putExtra("total",resp.total_price)
+                    startActivity(intent)
+
+
+                } else if (response.code() == 400) {
+
+                    Toast.makeText(this@TicketListActivity, "Wrong Value", Toast.LENGTH_LONG)
+                            .show()
+                }
+                else if(response.code()==404){
+                    Toast.makeText(this@TicketListActivity, "No Ticket found for plate number ${plateNoInput.text.toString()}", Toast.LENGTH_LONG).show()
+                }
+            }
+        })
     }
 }
