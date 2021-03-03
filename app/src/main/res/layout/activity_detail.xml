@@ -27,6 +27,13 @@
         android:textColor="#000000"
         android:textSize="30sp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please make sure to pay the amount stated below"
+        android:textColor="#000000"
+        android:textSize="15sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -53,30 +60,6 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/plateNoLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Plate Number"
-            android:textColor="#8024AA" />
-
-        <TextView
-            android:id="@+id/plateNoDet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:text="TextView"
-            android:textColor="#000000" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
@@ -86,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Started at"
+            android:text="Start Time"
             android:textColor="#8024AA" />
 
         <TextView
@@ -112,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Exited at"
+            android:text="Ended Time"
             android:textColor="#8024AA" />
 
         <TextView
@@ -147,5 +130,25 @@
             android:gravity="right"
             android:text="TextView"
             android:textColor="#000000" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="0dp"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:paddingBottom="0dp">
+
+        <Button
+            android:id="@+id/paidBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:text="Exit"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 </LinearLayout>

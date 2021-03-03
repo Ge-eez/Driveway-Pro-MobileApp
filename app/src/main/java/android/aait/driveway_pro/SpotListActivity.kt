@@ -37,11 +37,6 @@ class SpotListActivity : AppCompatActivity(), NearestAdapter.ClickedItem {
         sessionManager = SessionManager(this)
         var recyclerView: RecyclerView = rcSpots
         recyclerView.layoutManager = LinearLayoutManager(this)
-//        recyclerView.addItemDecoration(
-//            DividerItemDecoration(
-//                this,
-//                DividerItemDecoration.VERTICAL)
-//        )
 
         var call = retrofitInterface!!.findspot1("Bearer ${sessionManager.fetchAuthToken()}", params)
 //Auth, Json
@@ -57,12 +52,6 @@ class SpotListActivity : AppCompatActivity(), NearestAdapter.ClickedItem {
                 if (response.code() == 200 && response.body() != null) {
                     var resp = response.body()!!
                     recyclerView.adapter = NearestAdapter(resp,this@SpotListActivity)
-
-                    // Toast.makeText(requireContext(), resp[0].floor, Toast.LENGTH_SHORT).show()
-/*
-                    for(i in 0..resp.size-1){
-                        arrayListLoc.add(resp[i].location.coordinates)
-                    }*/
 
                 } else if (response.code() == 400) {
 

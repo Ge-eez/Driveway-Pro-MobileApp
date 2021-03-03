@@ -27,8 +27,9 @@ class TimerActivity : AppCompatActivity() {
         var parkingId=intent.getStringExtra("parkingLotId")
         var parkingSlotId=intent.getStringExtra("parkingSlotId")
         var price=intent.getStringExtra("price")
+        var company = intent.getStringExtra("company")
 
-        nameOfCompany.text=intent.getStringExtra("company")
+        nameOfCompany.text=company.toString()
         priceValue.text = price+" birr per hour"
 
         val sdf = SimpleDateFormat("hh:mm")
@@ -42,7 +43,7 @@ class TimerActivity : AppCompatActivity() {
             intent2.putExtra("parkingLotId",parkingId)
             intent2.putExtra("parkingSlotId",parkingSlotId)
             intent2.putExtra("startTimeValue",starter)
-            intent2.putExtra("company",nameOfCompany.toString())
+            intent2.putExtra("company",company)
             intent2.putExtra("price",price)
             startActivity(intent2)
             finish()

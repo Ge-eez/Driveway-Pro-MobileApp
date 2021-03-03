@@ -51,10 +51,6 @@ class slotListActivity : AppCompatActivity(), slotListAdapter.ClickedItem {
 
         company = companyName.substring(13, companyName.length - 1)
 
-        //sending the received id to Bookactivity as ParkingLotId
-       // var intent1= Intent(this, BookActivity::class.java)
-        //intent1.putExtra("parkingLotId",parkingId)
-
 
         val map = HashMap<String, String>()
         map.put("parkingLotId", parkingId)
