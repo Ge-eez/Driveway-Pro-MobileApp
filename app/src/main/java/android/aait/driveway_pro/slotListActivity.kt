@@ -81,5 +81,6 @@ class slotListActivity : AppCompatActivity(), slotListAdapter.ClickedItem {
         intent.putExtra("price",price)
         intent.putExtra("company", company)
         startActivity(intent)
+        finish()
     }
 }

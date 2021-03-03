@@ -95,13 +95,14 @@ class BookActivity : AppCompatActivity(), OnMapReadyCallback {
                         sessionManager.saveTicket(response.body()!!._id)
                         Toast.makeText(this@BookActivity," slot $parkingSlotId reservation successful", Toast.LENGTH_LONG).show()
 //                        startActivity(Intent(this@BookActivity,TimerActivity::class.java))
-                        var intent= Intent(this@BookActivity, TimerActivity::class.java)
+                        var intents= Intent(this@BookActivity, TimerActivity::class.java)
 
-                        intent.putExtra("parkingLotId",parkingId)
-                        intent.putExtra("parkingSlotId",parkingSlotId)
-                        intent.putExtra("company",company)
-                        intent.putExtra("price",price)
-                        startActivity(intent)
+                        intents.putExtra("parkingLotId",parkingId)
+                        intents.putExtra("parkingSlotId",parkingSlotId)
+                        intents.putExtra("company",company)
+                        intents.putExtra("price",price)
+                        startActivity(intents)
+                        finish()
                     }
                     else if (response.code() == 400) {
                         Toast.makeText(this@BookActivity ,"Client Error ", Toast.LENGTH_LONG).show()

@@ -32,6 +32,7 @@
         <activity android:name=".SpotListActivity" />
         <activity android:name=".PoHomeActivity" />
         <activity android:name=".Nearby" />
+        <activity android:name=".DetailActivity" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"

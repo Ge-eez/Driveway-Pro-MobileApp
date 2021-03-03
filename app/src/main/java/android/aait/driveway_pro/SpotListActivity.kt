@@ -85,6 +85,7 @@ class SpotListActivity : AppCompatActivity(), NearestAdapter.ClickedItem {
         intent.putExtra("company", company.toString())
 
         startActivity(intent)
+        finish()
     }
 
 }

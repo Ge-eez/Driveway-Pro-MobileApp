@@ -19,33 +19,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class TimerActivity : AppCompatActivity() {
-    private var retrofit: Retrofit? = RetrofitClient.getInstance()
-    private var retrofitInterface: MyService? = null
-    private lateinit var sessionManager: SessionManager
-//    private var retrofit: Retrofit? = RetrofitClient.getInstance()
-//    private var retrofitInterface: MyService? = null
-//    private lateinit var sessionManager: SessionManager
-//    private var resp = ArrayList<Slot>()
-//    var listOfslot = mutableListOf<String>()
-//    private lateinit var slotSlected:Any
-//    private lateinit var mapboxMap: MapboxMap
-//
-//    private val  SOURCE_ID = "SOURCE_ID"
-//    private val  ICON_ID = "ICON_ID"
-//    private val  LAYER_ID = "LAYER_ID"
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
         setContentView(R.layout.activity_timer)
-        retrofitInterface = retrofit!!.create(MyService::class.java)
-        sessionManager = SessionManager(this)
-//        mapView?.onCreate(savedInstanceState)
-//        mapView.getMapAsync(this)
-
-//        retrofitInterface = retrofit!!.create(MyService::class.java)
-//        sessionManager = SessionManager(this)
 
         val intent = intent
         var parkingId=intent.getStringExtra("parkingLotId")
@@ -54,199 +30,23 @@ class TimerActivity : AppCompatActivity() {
 
         nameOfCompany.text=intent.getStringExtra("company")
         priceValue.text = price+" birr per hour"
-//        var stoptime: Long = 0
-//        var chronometer: Chronometer
-//
-//        chronometer = findViewById(R.id.chronom1)
-//        chronometer.start()
+
         val sdf = SimpleDateFormat("hh:mm")
-        startTimeValue.text = sdf.format(Date())
+        val startTime = sdf.format(Date())
+        val startingTIme = startTime?.split(":")
+        val starter = "${startingTIme?.get(0)}.${startingTIme?.get(1)}"
+        startTimeValue.text = startTime
 
-        doneBtn.setOnClickListener (object : View.OnClickListener {
-//            var isWorking = false
+        doneBtn.setOnClickListener {
+            val intent2 = Intent(this@TimerActivity, DetailActivity::class.java)
+            intent2.putExtra("parkingLotId",parkingId)
+            intent2.putExtra("parkingSlotId",parkingSlotId)
+            intent2.putExtra("startTimeValue",starter)
+            intent2.putExtra("company",nameOfCompany.toString())
+            intent2.putExtra("price",price)
+            startActivity(intent2)
+            finish()
+            }
 
-            override fun onClick(v: View) {
-//                val map = HashMap<String, String>()
-//                map["slot_id"] = parkingSlotId.toString()
-//
-//                var call = retrofitInterface!!.poCancel("Bearer ${sessionManager.fetchAuthToken()}",map)
-//
-//                call.enqueue(object : Callback<PoResponse> {
-//                    override fun onFailure(call: Call<PoResponse>, t: Throwable) {
-//                        Toast.makeText(this@TimerActivity, t.message, Toast.LENGTH_LONG).show()
-//
-//                    }
-//
-//                    override fun onResponse(call: Call<PoResponse>, response: Response<PoResponse>) {
-//                        if (response.code() == 200 ) {
-//                            var resp = response.body()!!
-//                            Toast.makeText(this@TimerActivity,"cleared", Toast.LENGTH_LONG).show()
-//                            var intent= Intent(this@TimerActivity, DetailActivity::class.java)
-//                            intent.putExtra("slotId",resp.slot_id)
-//                            intent.putExtra("plateNumber",resp.plate_number)
-//                            intent.putExtra("parkAt",resp.park_at)
-//                            intent.putExtra("exitAt",resp.exit_at)
-//                            intent.putExtra("total",resp.total_price)
-//                            startActivity(intent)
-//
-//
-//                        } else if (response.code() == 400) {
-//
-//                            Toast.makeText(this@TimerActivity, "Wrong Value", Toast.LENGTH_LONG)
-//                                .show()
-//                        }
-//                        else if(response.code()==404){
-//                            Toast.makeText(this@TimerActivity, "No Ticket found for plate number ${plateNoInput.text.toString()}", Toast.LENGTH_LONG).show()
-//                        }
-//                    }
-//                })
-
-//                if (!isWorking) {
-//                    chronometer.start()
-//                    isWorking = true
-//                } else {
-//                    chronometer.stop()
-//                    isWorking = false
-//                }
-
-
-//            val map = HashMap<String, String>()
-//            if (parkingId != null) {
-//                map.put("parkingLotId", parkingId)
-//            }
-//            if (parkingSlotId != null) {
-//                map.put("parkingSlotId",parkingSlotId)
-//            }
-//
-//            Toast.makeText(this,"$parkingId $parkingSlotId", Toast.LENGTH_LONG).show()
-//
-//            val call = retrofitInterface!!.park("Bearer ${sessionManager.fetchAuthToken()}", map)
-//            call.enqueue(object : Callback<Park> {
-//
-//                override fun onFailure(call: Call<Park>, t: Throwable) {
-//
-//                    Toast.makeText(this@TimerActivity, t.message, Toast.LENGTH_LONG).show()
-//                }
-//                override fun onResponse(call: Call<Park>, response: Response<Park>) {
-//
-//                    if (response.code() == 200) {
-//                        var resp1=response.body()!!._id
-//                        sessionManager.saveTicket(response.body()!!._id)
-//                        Toast.makeText(this@TimerActivity," slot $parkingSlotId reservation successful", Toast.LENGTH_LONG).show()
-//                        startActivity(Intent(this@BookActivity,TimerActivity::class.java))
-
-
-
-                var intented= Intent(this@TimerActivity, DetailActivity::class.java)
-
-                intented.putExtra("parkingLotId",parkingId)
-                intented.putExtra("parkingSlotId",parkingSlotId)
-                intented.putExtra("startTimeValue",startTimeValue.toString())
-                intented.putExtra("company",nameOfCompany.toString())
-                intented.putExtra("price",price)
-                startActivity(intented)
-
-
-
-
-//                    }
-//                    else if (response.code() == 400) {
-//                        Toast.makeText(this@TimerActivity ,"Client Error ", Toast.LENGTH_LONG).show()
-//                    }
-//
-//                }
-//            })
-//        }
-        }
-
-
-
-
-//        startBtn.setOnClickListener(object : View.OnClickListener {
-
-//            var isWorking = false
-
-//            override fun onClick(v: View) {
-
-//                if (!isWorking) {
-//                    chronometer.start()
-//                    isWorking = true
-//                } else {
-//                    chronometer.stop()
-//                    isWorking = false
-//                }
-
-//                startBtn.setText(if (isWorking) R.string.start else R.string.stop)
-//
-//                Toast.makeText(
-//                    this@TimerActivity, getString(
-//                        if (isWorking)
-//                            R.string.working
-//                        else
-//                            R.string.stopped
-//                    ),
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-//        })
-
-    })
-
-
-//    override fun onMapReady(mapboxMap: MapboxMap) {
-//        val symbolLayers = ArrayList<Feature>()
-//        symbolLayers.add(Feature.fromGeometry(Point.fromLngLat(38.0, 9.9)))
-//
-//        mapboxMap.setStyle(
-//            Style.Builder().fromUri(Style.MAPBOX_STREETS)
-//                .withImage(ICON_ID, BitmapUtils
-//                    .getBitmapFromDrawable(ContextCompat.getDrawable(this, R.drawable.mapbox_marker_icon_default))!!)
-//                .withSource(GeoJsonSource(SOURCE_ID, FeatureCollection.fromFeatures(symbolLayers)))
-//                .withLayer(
-//                    SymbolLayer(LAYER_ID, SOURCE_ID)
-//                        .withProperties(
-//                            PropertyFactory.iconImage(ICON_ID),
-//                            PropertyFactory.iconSize(1.0f),
-//                            PropertyFactory.iconAllowOverlap(true),
-//                            PropertyFactory.iconIgnorePlacement(true)
-//                        ))
-//        )
-//    }
-//    public override fun onResume() {
-//        super.onResume()
-//        mapView?.onResume()
-//    }
-//
-//    override fun onStart() {
-//        super.onStart()
-//        mapView?.onStart()
-//    }
-//
-//    override fun onStop() {
-//        super.onStop()
-//        mapView?.onStop()
-//    }
-//
-//    public override fun onPause() {
-//        super.onPause()
-//        mapView?.onPause()
-//    }
-//
-//    override fun onLowMemory() {
-//        super.onLowMemory()
-//        mapView?.onLowMemory()
-//    }
-//
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        mapView?.onDestroy()
-//    }
-//
-//    override fun onSaveInstanceState(outState: Bundle) {
-//        super.onSaveInstanceState(outState)
-//        mapView?.onSaveInstanceState(outState)
-//    }
-
-
-}
+    }
 }

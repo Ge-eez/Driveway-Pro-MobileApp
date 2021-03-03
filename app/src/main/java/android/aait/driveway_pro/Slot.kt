@@ -16,7 +16,6 @@ data class StatuS(
     val statusName:List<String>,
     val _id:String
 )
-
 data class PoResponse(val _id: String,
                       val plate_number:String,
                       val slot_id:String,
