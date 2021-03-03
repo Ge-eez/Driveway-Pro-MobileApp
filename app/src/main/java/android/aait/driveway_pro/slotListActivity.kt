@@ -26,6 +26,8 @@ class slotListActivity : AppCompatActivity(), slotListAdapter.ClickedItem {
     var listOfslot = mutableListOf<String>()
     lateinit var parkingId:String
     lateinit var price:String
+    lateinit var companyName:String
+    lateinit var company:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,10 +47,9 @@ class slotListActivity : AppCompatActivity(), slotListAdapter.ClickedItem {
         val intent = intent
         parkingId= intent.getStringExtra("id").toString()
         price= intent.getStringExtra("price").toString()
+        companyName = intent.getStringExtra("company").toString()
 
-        //sending the received id to Bookactivity as ParkingLotId
-       // var intent1= Intent(this, BookActivity::class.java)
-        //intent1.putExtra("parkingLotId",parkingId)
+        company = companyName.substring(13, companyName.length - 1)
 
 
         val map = HashMap<String, String>()
@@ -61,12 +62,7 @@ class slotListActivity : AppCompatActivity(), slotListAdapter.ClickedItem {
             }
 
             override fun onResponse(call: Call<ArrayList<Slot>>, response: Response<ArrayList<Slot>>) {
-
                 resp = response.body()!!
-
-                for(i in 0..resp.size-1){
-                    listOfslot.add(resp[i]._id)
-                }
                 recyclerView.adapter = slotListAdapter(resp,this@slotListActivity)
             }
         })
@@ -74,12 +70,13 @@ class slotListActivity : AppCompatActivity(), slotListAdapter.ClickedItem {
 
     override fun clickedSpot(slots: Slot) {
         var intent= Intent(this, BookActivity::class.java)
-        //intent.putExtra("data",slots)
         var slotID=slots._id
 
         intent.putExtra("slotId",slotID)
         intent.putExtra("parkingLotId",parkingId)
         intent.putExtra("price",price)
+        intent.putExtra("company", company)
         startActivity(intent)
+        finish()
     }
 }
